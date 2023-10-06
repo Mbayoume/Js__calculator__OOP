@@ -14,7 +14,13 @@ class Calculator {
     this.currentOperand = this.currentOperand.toString() + number.toString();
   }
 
-  delete() {}
+  deleteLastInput() {
+    this.currentOperand = this.currentOperand.toString().slice(0, -1);
+    if (this.currentOperand === "" && this.prevOperand != "") {
+      this.prevOperand = this.prevOperand.toString().slice(0, -1);
+    }
+    this.updateCalculatorDisplay();
+  }
 
   chooseOperation(operation) {
     // implement the operation function if the current operand is empty we need to prevent the main function
@@ -23,7 +29,7 @@ class Calculator {
       this.compute();
     }
     this.operation = operation;
-    this.prevOperand = this.currentOperand + operation;
+    this.prevOperand = `${this.currentOperand}  ${operation}`;
 
     // console.log(this.prevOperand);
     this.currentOperand = "";
@@ -114,4 +120,9 @@ clearAllOps.addEventListener("click", () => {
     calculator.clearAll();
     calculator.updateCalculatorDisplay();
   }
+});
+
+// delete function
+deleteOps.addEventListener("click", () => {
+  calculator.deleteLastInput();
 });
