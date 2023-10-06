@@ -16,7 +16,18 @@ class Calculator {
 
   delete() {}
 
-  chooseOperation(operation) {}
+  chooseOperation(operation) {
+    // implement the operation function if the current operand is empty we need to prevent the main function
+    if (this.currentOperand === "") return; // in this code we apply on the inner value in general
+    if (this.prevOperand != "") {
+      this.compute();
+    }
+    this.operation = operation;
+    this.prevOperand = this.currentOperand + operation;
+
+    // console.log(this.prevOperand);
+    this.currentOperand = "";
+  }
 
   clearAll() {
     this.currentOperand = "";
@@ -24,10 +35,40 @@ class Calculator {
     this.operation = undefined;
   }
 
-  compute() {}
+  compute() {
+    // implement the omputation values
+    let computation__result;
+    const prev = parseFloat(this.prevOperand);
+    const current = parseFloat(this.currentOperand);
+    // validate the values of the inputs numbers itself
+
+    if (isNaN(prev) || isNaN(current)) return; // prevent all the coputatino function
+
+    // create a switch statement to handle the operations
+    switch (this.operation) {
+      case "+":
+        computation__result = prev + current;
+        break;
+      case "-":
+        computation__result = prev - current;
+        break;
+      case "*":
+        computation__result = prev * current;
+        break;
+      case "÷":
+        computation__result = prev / current;
+      default:
+        return;
+    }
+    this.currentOperand = computation__result;
+    this.prevOperand = "";
+    this.operation = undefined;
+    this.updateCalculatorDisplay();
+  }
 
   updateCalculatorDisplay() {
     current_ops_screen.innerText = this.currentOperand;
+    prev_ops_screen.innerText = this.prevOperand;
   }
 }
 
@@ -53,3 +94,24 @@ numbers__btn.forEach((button) => {
 });
 
 // operations choosed
+operation.forEach((button) => {
+  button.addEventListener("click", () => {
+    calculator.chooseOperation(button.innerText);
+    calculator.updateCalculatorDisplay();
+  });
+});
+
+// computing function
+
+equal_operation.addEventListener("click", (button) => {
+  calculator.compute();
+  calculator.updateCalculatorDisplay();
+});
+
+// clear function
+clearAllOps.addEventListener("click", () => {
+  {
+    calculator.clearAll();
+    calculator.updateCalculatorDisplay();
+  }
+});

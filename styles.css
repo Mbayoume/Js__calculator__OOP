@@ -29,14 +29,14 @@ body{
 
 .calc{
     resize: none;
-    max-width: 20.2rem; /* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
+    max-width: 28.2rem; /* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
     
 }
 
 .calc__screen{
     background-color: #171536;
     height: 100%;
- min-height: 7.4rem;
+    min-height: 7.4rem;
     /* border-radius: 4px; */
 }
 .current__ops{
@@ -65,7 +65,7 @@ body{
 }
 
 .calc__btn > button{
-    padding: 1.7rem;
+    padding: 2.7rem;
     cursor: pointer;
     color: #032b41;
     outline: none;
